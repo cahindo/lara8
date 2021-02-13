@@ -34,8 +34,22 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'App\Http\Controllers\PagesController@home');
 Route::redirect('/home', '/');
 
-
 Route::get('/about', 'App\Http\Controllers\PagesController@about');
 
-
 Route::get('/mahasiswa', 'App\Http\Controllers\MahasiswaController@index');
+
+// STUDENTS
+Route::get('/students', 'App\Http\Controllers\StudentsController@index');
+Route::get('/students/create', 'App\Http\Controllers\StudentsController@create');
+Route::post('/students', 'App\Http\Controllers\StudentsController@store');
+// ROUTE MODEL BINDING
+Route::get('/students/{student}', 'App\Http\Controllers\StudentsController@show');
+// HAPUS DATA DENGAN METOD DELETE - berkesinambungan dengan form dengan @method()
+Route::delete('/students/{student}', 'App\Http\Controllers\StudentsController@destroy');
+// EDIT DATA
+Route::get('/students/{student}/edit', 'App\Http\Controllers\StudentsController@edit');
+// SAVING THE EDITED DATA
+Route::patch('/students/{student}', 'App\Http\Controllers\StudentsController@update');
+
+// ! MAGIC ROUTE
+Route::resource('student', 'App\Http\Controllers\StudentsController');
